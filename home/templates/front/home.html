@@ -3,7 +3,21 @@
 
     <h1>users</h1>
 
-    {% for user in users %}
-        {{ user.id }}
+    {% for post in posts %}
+        <h2>
+            {{ post.title }}<br>
+        </h2>
+        <p>
+            {{ post.content }}
+        </p>
     {% endfor %}
+    {% for user in users %}
+        <h2>
+            {{ user.first_name }}<br>
+        </h2>
+        <p>
+            {{ user.last_name }}
+        </p>
+    {% endfor %}
+    
 {% endblock content %}
