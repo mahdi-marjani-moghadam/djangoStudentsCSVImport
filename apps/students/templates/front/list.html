@@ -1,0 +1,23 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+    <h1>Students</h1>
+
+
+    <div class="d-flex gap-1">
+
+        {% for student in students %}
+        
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ student.name }} {{ student.family }}</h5>
+                <p class="card-text">{{ student.name }}</p>
+                <a href="/students/{{ student.id }}" class="btn btn-primary">Detail</a>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+
+{% endblock content %}
