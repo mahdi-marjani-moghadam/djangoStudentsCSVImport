@@ -1,23 +1,29 @@
-{% extends 'apps/core/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
-    <h1>users</h1>
+    <h2>students</h2>
+    <div class="d-flex flex-wrap gap-1">
+        {% for student in students %}
+            <div class="card" style="width: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ student.name }} {{ student.family }}</h5>
+                    <p class="card-text">{{ student.name }}</p>
+                    <a href="/students/{{ student.id }}" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
 
-    {% for post in posts %}
-        <h2>
-            {{ post.title }}<br>
-        </h2>
-        <p>
-            {{ post.content }}
-        </p>
-    {% endfor %}
-    {% for user in users %}
-        <h2>
-            {{ user.first_name }}<br>
-        </h2>
-        <p>
-            {{ user.last_name }}
-        </p>
-    {% endfor %}
+    <h2>users</h2>
+    <div class="d-flex flex-wrap gap-1">
+        {% for user in users %}
+            <div class="card" style="width: 13rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     
 {% endblock content %}

@@ -40,15 +40,15 @@ from apps.parents.models import parents
 #     return data
 
 
-# def listView(request):
-#     response = requests.get('http://127.0.0.1:8000/api/v1/students/')
-#     StudentsResponse = response.json()
+def listView(request):
+    response = requests.get('http://127.0.0.1:8000/api/v1/students/')
+    StudentsResponse = response.json()
 
-#     data = {
-#         "students": StudentsResponse
-#     }
+    data = {
+        "students": StudentsResponse
+    }
 
-#     return render(request, 'front/list.html', data)
+    return render(request, 'front/list.html', data)
 
 
 def detailView(request, *args, **kwargs):
@@ -64,24 +64,6 @@ def detailView(request, *args, **kwargs):
     return render(request, 'front/detail.html', data)
 
 
-class StudentList(ListView):
-    model = students
-    data = ""
-    template_name = 'front/list.html'
-    context_object_name = ""
-
-    def get_context_data(self, **kwargs):
-        context = super(StudentList, self).get_context_data(**kwargs)
-
-        response = requests.get('http://127.0.0.1:8000/api/v1/students/')
-        StudentsResponse = response.json()
-
-        data = {
-            "students": StudentsResponse
-        }
-        context['data'] = data
-
-        return context
 
 
 class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from re import template
 import requests
+from django.shortcuts import render
+from django.views.generic import ListView
+
 from apps.students.models import students
 
 def homeView(request):
@@ -9,8 +12,10 @@ def homeView(request):
     UserResponse = response.json()
 
     data = {
-        "posts": students.objects.all().order_by('-id'),
+        "students": students.objects.all().order_by('-id'),
         "users": UserResponse['data']
     }
     
     return render(request,'front/home.html',data)
+
+
