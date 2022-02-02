@@ -1,0 +1,17 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+    <h1> <a href="/students">Students</a> / {{ student.name }} </h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ student.name }} {{ student.family }}</h5>
+          <p class="card-text">{{ student.name }}</p>
+          
+        </div>
+      </div>
+
+           
+    
+{% endblock content %}

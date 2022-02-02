@@ -6,10 +6,3 @@ from apps.parents.models import parents
 class studentsAdmin(admin.ModelAdmin):
     list_display = ("name", "family","parent")
 
-    # def show_parent(self, obj):
-        
-    #     result = parents.objects.filter(id=obj)
-    #     return result["grade__avg"]
-
-
-    
