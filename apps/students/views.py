@@ -4,7 +4,11 @@ import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+
+from rest_framework.views import APIView
+
+
 # from django.http import HttpResponse
 
 # from urllib import response
@@ -12,57 +16,35 @@ from django.views.generic import ListView
 # from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-# from django.views.decorators.csrf import csrf_exempt
 
 from .models import students, StudentBulkUpload
 from apps.parents.models import parents
 
-# class StudentsList(View):
-#     @csrf_exempt
-#     def dispatch(self, request, *args, **kwargs):
-#         if(request.method == 'GET'):
-#             return self.listView(request)
-#         else:
-#             return JsonResponse(
-#                 status=405,
-#                 data={
-#                     'status':'error', 'message':'Method Not Allowed'
-#                 }
-#             )
 
-# def listView(self,request):
-#     response = requests.get('http://127.0.0.1:8000/api/v1/students/')
-#     StudentsResponse = response.json()
-
-#     data = {
-#         "students": StudentsResponse
-#     }
-#     return data
+class studentList(ListView):
+    model = students
+    paginate_by = 3
+    template_name = 'front/list.html'
 
 
-def listView(request):
-    response = requests.get('http://127.0.0.1:8000/api/v1/students/')
-    StudentsResponse = response.json()
-
-    data = {
-        "students": StudentsResponse
-    }
-
-    return render(request, 'front/list.html', data)
 
 
-def detailView(request, *args, **kwargs):
+class StudentDetailViewExternalApi(DetailView):
 
-    response = requests.get(
-        'http://127.0.0.1:8000/api/v1/students/'+kwargs['pk'])
-    StudentResponse = response.json()
+    model = students
+    template_name = 'front/detail.html'
 
-    data = {
-        "student": StudentResponse
-    }
+    def get_context_data(self, **kwargs):
 
-    return render(request, 'front/detail.html', data)
+        response = requests.get(
+            'http://127.0.0.1:8000/api/v1/students/'+str(self.kwargs['pk']))
+        StudentResponse = response.json()
 
+        return  {
+            'student' : StudentResponse
+        }
+
+        
 
 
 
@@ -74,15 +56,7 @@ class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     success_message = "Successfully uploaded students"
     # form_class = SteudenstForm
 
-    # def post(self, request, *args, **kwargs):
-    #     user = students(name='ali',family='karimi',parent=parents.objects.get(id=1))
-    #     print('------------------------')
-    #     print(user)
-    #     print('------------------------')
-    #     print(request)
-    #     print('------------------------')
-    #     return super().post(request, *args, **kwargs)
-
+  
     def form_valid(self, form):
         new_group = form.save()
         with new_group.csv_file.open('rt') as the_csv:

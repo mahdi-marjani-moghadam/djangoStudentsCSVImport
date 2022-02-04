@@ -7,7 +7,7 @@
             <div class="card" style="width: 13rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ student.name }} {{ student.family }}</h5>
-                    <p class="card-text">{{ student.name }}</p>
+                    <p class="card-text">{{ student.name }} <br> {{ student.created_at }}</p>
                     <a href="/students/{{ student.id }}" class="btn btn-primary">Detail</a>
                 </div>
             </div>

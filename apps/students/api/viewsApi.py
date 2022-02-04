@@ -6,7 +6,7 @@ from ..models import students
 
 
 class StudentsList(ListCreateAPIView):
-    queryset = students.objects.all()
+    queryset = students.objects.all().order_by('-id')
     serializer_class = StudentSerializer
     # permission_classes = [IsAuthenticated]
 
