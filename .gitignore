@@ -1,3 +1,2 @@
 my_env
-apps/core/__pycache__/
-apps/students/__pycache__/
+*.pyc
