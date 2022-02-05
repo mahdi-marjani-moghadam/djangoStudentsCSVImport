@@ -6,16 +6,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
 
-from rest_framework.views import APIView
-
-
-# from django.http import HttpResponse
-
-# from urllib import response
-# from urllib.request import Request
-# from django.http import JsonResponse
-from django.shortcuts import render
-from django.views import View
 
 from .models import students, StudentBulkUpload
 from apps.parents.models import parents
@@ -25,7 +15,6 @@ class studentList(ListView):
     model = students
     paginate_by = 3
     template_name = 'front/list.html'
-
 
 
 

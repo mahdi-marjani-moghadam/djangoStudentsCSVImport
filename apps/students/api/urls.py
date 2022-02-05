@@ -6,4 +6,6 @@ from . import viewsApi
 urlpatterns = [
     path('', viewsApi.StudentsList.as_view(), name='student_list'),
     re_path(r'^(?P<pk>\d+)/$', viewsApi.StudentsRetrieveUpdateDestroy.as_view(), name='student_detail'),
+
+    path('report/<age>', viewsApi.StudentReport.as_view(), name='student-report'),
 ]

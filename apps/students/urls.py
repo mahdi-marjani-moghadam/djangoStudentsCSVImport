@@ -6,5 +6,4 @@ urlpatterns = [
     path('<int:pk>/', views.StudentDetailViewExternalApi.as_view(), name="student-detail"),
     
     path("upload/", views.StudentBulkUploadView.as_view(), name="student-upload"),
-
 ]
