@@ -21,6 +21,6 @@ class StudentReport(ListAPIView):
 
     def get_queryset(self):
         return students.objects.filter(parent__age__gte=self.kwargs['age'])
-        return super().get_queryset()
+        
         
     

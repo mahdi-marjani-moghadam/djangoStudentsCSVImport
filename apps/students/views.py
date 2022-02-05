@@ -25,6 +25,14 @@ class StudentDetailViewExternalApi(DetailView):
 
     def get_context_data(self, **kwargs):
 
+        ## 2 ways get data
+        #1
+
+        return  {
+            'student' : students.get_by_pk(self.kwargs['pk']),
+        }
+
+        #2
         response = requests.get(
             'http://127.0.0.1:8000/api/v1/students/'+str(self.kwargs['pk']))
         StudentResponse = response.json()

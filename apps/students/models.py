@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import CharField
 from django.urls import reverse
+from django.http import Http404
 
 from apps.parents.models import parents
 
@@ -8,8 +9,19 @@ from django.utils import timezone
 
 # from adaptor.model import CsvModel
 
+class baseModel(models.Model):
 
-class students(models.Model):
+    class Meta:
+        abstract = True
+    
+    @classmethod
+    def get_by_pk(cls, pk, raise_exception=False):
+        obj = cls.objects.filter(pk=pk).first()
+        if raise_exception and not obj:
+            raise Http404('The requested entity is not found')
+        return obj
+
+class students(baseModel):
     STATUS_CHOICES = [("active", "Active"), ("inactive", "Inactive")]
 
     GENDER_CHOICES = [("male", "Male"), ("female", "Female")]
