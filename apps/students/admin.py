@@ -1,5 +1,7 @@
 import requests
 from django.contrib import admin
+from django.db.models import Count
+
 from .models import students
 from apps.parents.models import parents
 
@@ -13,7 +15,7 @@ class studentsAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
-        extra_context['greate60'] = parents.objects.filter(age__gte=60).count()
+        extra_context['greate60'] = parents.objects.filter(age__gte=60).aggregate(all=Count("id"))
         
         response = requests.get(
             'http://127.0.0.1:8000/api/v1/students/report/50')
