@@ -1,4 +1,4 @@
-# djangoStudentsCSVImport
+# Django Students project + CSV Importer
 پروژه ساده برای موارد زیر در فریم ورک جنگو
 
 ۱- آپلود گروهی اطلاعات دانش آموزان
@@ -11,7 +11,7 @@
 
 
 ## ویژگی های پروژه
-۱- استفاده از generic
+۱- استفاده از generic, rest_framework, csv
 
 ۲- اتصال به دیتابیس mysql
 
