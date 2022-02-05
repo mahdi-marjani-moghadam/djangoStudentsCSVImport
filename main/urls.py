@@ -7,7 +7,7 @@ urlpatterns = [
     path('', include('apps.home.urls')),
 
     path('students/', include('apps.students.urls')),
-    # path('parents/', include('apps.parents.urls')),
+    path('parents/', include('apps.parents.urls')),
 
     path('api/v1/',include('apps.core.urls')),
     path('/api-auth/', include('rest_framework.urls')),

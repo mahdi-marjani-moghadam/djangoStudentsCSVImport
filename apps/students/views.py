@@ -17,35 +17,30 @@ class studentList(ListView):
     template_name = 'front/list.html'
 
 
-
-class StudentDetailViewExternalApi(DetailView):
+class studentDetailViewExternalApi(DetailView):
 
     model = students
     template_name = 'front/detail.html'
 
     def get_context_data(self, **kwargs):
 
-        ## 2 ways get data
-        #1
-
-        return  {
-            'student' : students.get_by_pk(self.kwargs['pk']),
+        # two ways get data
+        # 1
+        return {
+            'student': students.get_by_pk(self.kwargs['pk']),
         }
 
-        #2
+        # 2
         response = requests.get(
             'http://127.0.0.1:8000/api/v1/students/'+str(self.kwargs['pk']))
         StudentResponse = response.json()
 
-        return  {
-            'student' : StudentResponse
+        return {
+            'student': StudentResponse
         }
 
-        
 
-
-
-class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class studentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = StudentBulkUpload
     template_name = "admin/students_upload.html"
     fields = ["csv_file"]
@@ -53,7 +48,6 @@ class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     success_message = "Successfully uploaded students"
     # form_class = SteudenstForm
 
-  
     def form_valid(self, form):
         new_group = form.save()
         with new_group.csv_file.open('rt') as the_csv:
@@ -81,4 +75,4 @@ class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
                     parent=parents.objects.get(id=parent.id)
                 )
                 student.save()
-        return super(StudentBulkUploadView, self).form_valid(form)
+        return super(studentBulkUploadView, self).form_valid(form)

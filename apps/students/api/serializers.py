@@ -12,4 +12,4 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = students
-        fields = ['id', 'name', 'family',  'parent', 'parent_id', 'url']
+        fields = ['id', 'name', 'family',  'parent', 'url']

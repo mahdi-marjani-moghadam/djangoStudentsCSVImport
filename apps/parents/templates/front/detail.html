@@ -1,0 +1,17 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+    <h1> <a href="/parents">Parents</a> / {{ parent.name }} </h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ parent.name }} </h5>
+          <p class="card-text">{{ parent.age }}</p>
+          
+        </div>
+      </div>
+
+           
+    
+{% endblock content %}

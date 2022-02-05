@@ -1,0 +1,23 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+    <h1>parents</h1>
+
+
+    <div class="d-flex flex-wrap gap-1">
+
+        {% for parent in parents_list %}
+        
+        <div class="card" style="width: 13rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ parent.name }} </h5>
+                <p class="card-text">{{ parent.age }}</p>
+                <a href="/parents/{{ parent.id }}" class="btn btn-primary">Detail</a>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+
+{% endblock content %}

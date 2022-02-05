@@ -1,9 +1,12 @@
+from django.urls import reverse
 from django.db import models
 
-class parents(models.Model):
+from apps.core.models import baseModel
+
+class parents(baseModel):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
-    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name}"
+
