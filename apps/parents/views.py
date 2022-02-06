@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 
-from .models import parents
+from apps.parents.models import parents
 
 
 class parentList(ListView):
