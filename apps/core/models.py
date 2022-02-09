@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from django.db import models
 from django.http import Http404
 from django.urls import reverse
@@ -20,3 +21,9 @@ class baseModel(models.Model):
 
     def get_absolute_url(self):
         return reverse(self.__class__+"-detail", kwargs={"pk": self.pk})
+
+class PaginationSearchable:
+    @classmethod
+    @abstractmethod
+    def get_searchable_fields(cls):
+        return []

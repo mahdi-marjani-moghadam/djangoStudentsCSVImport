@@ -1,10 +1,18 @@
 from django.db import models
 
-from apps.core.models import baseModel
+from apps.core.models import PaginationSearchable, baseModel
 from apps.parents.models import parents
 
 
-class students(baseModel):
+class students(baseModel,PaginationSearchable):
+
+    @classmethod
+    def get_searchable_fields(cls):
+        return [
+            'name',
+            'family'
+        ]
+
     name = models.CharField(max_length=100)
     family = models.CharField(max_length=100)
     parent = models.ForeignKey(parents, on_delete=models.CASCADE)
