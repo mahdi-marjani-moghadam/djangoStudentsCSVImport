@@ -5,9 +5,9 @@ from django.views.generic.list import ListView
 
 from apps.students.models import students
 
-def homeView(request):
 
-    
+
+def homeView(request):
     response = requests.get('https://reqres.in/api/users?page=2')
     UserResponse = response.json()
 

@@ -1,4 +1,5 @@
 import csv
+from django.shortcuts import render
 import requests
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +10,7 @@ from django.views.generic import ListView, DetailView
 
 from .models import students, StudentBulkUpload
 from apps.parents.models import parents
+from .forms import createStudent
 
 
 class studentList(ListView):
@@ -76,3 +78,14 @@ class studentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
                 )
                 student.save()
         return super(studentBulkUploadView, self).form_valid(form)
+
+
+def create(request):
+    if(request.method == 'POST'):
+        form = createStudent(request.POST)
+        if form.is_valid():
+            student = form.save()
+    else:
+        form = createStudent()
+
+    return render(request, 'front/create.html', {'form': form})
