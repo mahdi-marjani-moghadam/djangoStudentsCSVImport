@@ -9,6 +9,8 @@ from apps.parents.models import parents
 @admin.register(students)
 class studentsAdmin(admin.ModelAdmin):
     list_display = ("name", "family", "parent", "parent_age")
+    list_display_links = ['name']
+
 
     @admin.display()
     def parent_age(self, obj):
